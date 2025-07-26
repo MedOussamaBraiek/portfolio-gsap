@@ -94,7 +94,7 @@ const Skills = () => {
   }, []);
 
   const SkillItem = ({ logo, index }) => (
-    <div key={index} className="flex-shrink-0 mx-8">
+    <div key={index} className="flex-shrink-0 mx-8 ">
       <div
         className="flex items-center flex-col group cursor-pointer"
         onMouseEnter={(e) => {
@@ -159,9 +159,12 @@ const Skills = () => {
   );
 
   return (
-    <div ref={sectionRef} className="py-24 overflow-hidden">
+    <div
+      ref={sectionRef}
+      className="lg:pt-24 md:pt-[300px] sm:pt-[300px] pt-[150px] overflow-hidden "
+    >
       <div className="text-center mb-20">
-        <h2 className="text-7xl font-bold text-white mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text">
+        <h2 className="sm:text-7xl text-[3rem] font-bold text-white mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text">
           My Skills
         </h2>
         <p className="text-white/60 text-lg">Technologies I work with</p>

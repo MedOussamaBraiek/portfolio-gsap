@@ -13,6 +13,7 @@ const HeroSection = () => {
   const titleRef = useRef(null);
   const imageRef = useRef(null);
   const paragraphRefs = useRef([]);
+  const paragraphRefs2 = useRef([]);
   const buttonRef = useRef(null);
 
   useEffect(() => {
@@ -24,6 +25,9 @@ const HeroSection = () => {
 
     // SplitText pour les paragraphes
     const paragraphSplits = paragraphRefs.current.map(
+      (p) => new SplitText(p, { type: "lines", linesClass: "line" })
+    );
+    const paragraphSplits2 = paragraphRefs2.current.map(
       (p) => new SplitText(p, { type: "lines", linesClass: "line" })
     );
 
@@ -69,6 +73,18 @@ const HeroSection = () => {
         },
         "-=0.8"
       )
+      // Animation des lignes du paragraphe2
+      .from(
+        paragraphSplits2.flatMap((split) => split.lines),
+        {
+          duration: 0.8,
+          opacity: 0,
+          x: -50,
+          ease: "power2.out",
+          stagger: 0.1,
+        },
+        "-=0.8"
+      )
 
       // Animation du bouton
       .fromTo(
@@ -96,11 +112,11 @@ const HeroSection = () => {
   }, []);
 
   const paragraphLines = [
-    "Versatile Software Engineer with expertise in building robust,",
-    "scalable, and user-friendly web and mobile applications.",
-    "Proficient in Full-Stack MERN development, and mobile",
-    "frameworks like Flutter and Kotlin. Adept at solving",
-    "technical challenges, adapting to new technologies.",
+    "Software Engineer building robust,",
+    "web and mobile solutions wit",
+    "MERN, Flutter, and Kotlin.",
+    "Passionate about creating scalable",
+    "application and embracing new technologies.",
   ];
 
   const handleMouseMove = (e) => {
@@ -126,27 +142,27 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col w-full items-center justify-center h-screen">
       <h1
         ref={titleRef}
-        className="hero-title text-[7.5rem] font-black text-center uppercase tracking-wider mt-[-90px] w-full"
+        className="hero-title text-[7.5rem] font-black text-center uppercase tracking-wider lg:mt-[-90px] w-full"
       >
         HI, I'M OUSSAMA
       </h1>
       <div className="flex  justify-center w-full">
-        <div className="flex justify-between items-center w-full">
-          <div className="max-w-[25%]">
+        <div className="flex lg:justify-between justify-center items-center w-full flex-wrap">
+          <div className="max-w-[25%] hidden lg:block">
             {paragraphLines.map((line, index) => (
               <p
                 key={index}
-                ref={(el) => (paragraphRefs.current[index] = el)}
+                ref={(el) => (paragraphRefs2.current[index] = el)}
                 className="mb-2"
               >
                 {line}
               </p>
             ))}
           </div>
-          <div className="p-10 relative mt-[-60px] ml-[-50px]">
+          <div className="p-10 relative mt-[-60px] lg:ml-[-50px]">
             <div
               ref={containerRef}
               className="relative transition-transform duration-200 ease-out"
@@ -165,29 +181,42 @@ const HeroSection = () => {
               />
             </div>
           </div>
-          <button
-            ref={buttonRef}
-            className="px-8 py-4 rounded-4xl bg-gradient-to-r from-gray-900 via-purple-900 to-pink-600
+          <div className="flex flex-col gap-5 lg:items-start items-center w-full lg:w-[25%]">
+            <div className="lg:max-w-[25%] w-full block lg:hidden text-center">
+              {paragraphLines.map((line, index) => (
+                <p
+                  key={index}
+                  ref={(el) => (paragraphRefs.current[index] = el)}
+                  className="mb-2 text-center"
+                >
+                  {line}
+                </p>
+              ))}
+            </div>
+            <button
+              ref={buttonRef}
+              className="px-8 py-4 rounded-4xl bg-gradient-to-r from-gray-900 via-purple-900 to-pink-600
              text-[20px]   cursor-pointer "
-            onMouseEnter={() => {
-              gsap.to(buttonRef.current, {
-                rotation: 10,
-                scale: 1.05,
-                duration: 0.3,
-                ease: "power2.out",
-              });
-            }}
-            onMouseLeave={() => {
-              gsap.to(buttonRef.current, {
-                rotation: 0,
-                scale: 1,
-                duration: 0.3,
-                ease: "power2.out",
-              });
-            }}
-          >
-            CONTACT ME
-          </button>
+              onMouseEnter={() => {
+                gsap.to(buttonRef.current, {
+                  rotation: 10,
+                  scale: 1.05,
+                  duration: 0.3,
+                  ease: "power2.out",
+                });
+              }}
+              onMouseLeave={() => {
+                gsap.to(buttonRef.current, {
+                  rotation: 0,
+                  scale: 1,
+                  duration: 0.3,
+                  ease: "power2.out",
+                });
+              }}
+            >
+              CONTACT ME
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 import HeroSection from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Skills from "@/components/Skills";
+import Projects from "@/components/Projects";
+import Services from "@/components/Services";
 
 export default function Home() {
   return (
@@ -8,10 +10,10 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <Skills />
+      {/* <Services /> */}
+      <Projects />
       <div className="h-[500px] bg-white"></div>
       <div className="h-[500px] bg-black"></div>
-      <div className="h-[500px] bg-white"></div>
-      <div className="h-[500px] bg-white"></div>
     </div>
   );
 }
